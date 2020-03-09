@@ -1,0 +1,36 @@
+C:\Users\annx3683\OneDrive - Syddansk Erhvervsskole\undervisning\øh database server igen\Orm_Bager\Orm_Bager\bin\Debug\netcoreapp3.1\Orm_Bager.exe
+C:\Users\annx3683\OneDrive - Syddansk Erhvervsskole\undervisning\øh database server igen\Orm_Bager\Orm_Bager\obj\Debug\netcoreapp3.1\Orm_Bager.csprojAssemblyReference.cache
+C:\Users\annx3683\OneDrive - Syddansk Erhvervsskole\undervisning\øh database server igen\Orm_Bager\Orm_Bager\obj\Debug\netcoreapp3.1\Orm_Bager.AssemblyInfoInputs.cache
+C:\Users\annx3683\OneDrive - Syddansk Erhvervsskole\undervisning\øh database server igen\Orm_Bager\Orm_Bager\obj\Debug\netcoreapp3.1\Orm_Bager.AssemblyInfo.cs
+C:\Users\annx3683\OneDrive - Syddansk Erhvervsskole\undervisning\øh database server igen\Orm_Bager\Orm_Bager\bin\Debug\netcoreapp3.1\Orm_Bager.deps.json
+C:\Users\annx3683\OneDrive - Syddansk Erhvervsskole\undervisning\øh database server igen\Orm_Bager\Orm_Bager\bin\Debug\netcoreapp3.1\Orm_Bager.runtimeconfig.json
+C:\Users\annx3683\OneDrive - Syddansk Erhvervsskole\undervisning\øh database server igen\Orm_Bager\Orm_Bager\bin\Debug\netcoreapp3.1\Orm_Bager.runtimeconfig.dev.json
+C:\Users\annx3683\OneDrive - Syddansk Erhvervsskole\undervisning\øh database server igen\Orm_Bager\Orm_Bager\bin\Debug\netcoreapp3.1\Orm_Bager.dll
+C:\Users\annx3683\OneDrive - Syddansk Erhvervsskole\undervisning\øh database server igen\Orm_Bager\Orm_Bager\bin\Debug\netcoreapp3.1\Orm_Bager.pdb
+C:\Users\annx3683\OneDrive - Syddansk Erhvervsskole\undervisning\øh database server igen\Orm_Bager\Orm_Bager\bin\Debug\netcoreapp3.1\System.Data.SqlClient.dll
+C:\Users\annx3683\OneDrive - Syddansk Erhvervsskole\undervisning\øh database server igen\Orm_Bager\Orm_Bager\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
+C:\Users\annx3683\OneDrive - Syddansk Erhvervsskole\undervisning\øh database server igen\Orm_Bager\Orm_Bager\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\sni.dll
+C:\Users\annx3683\OneDrive - Syddansk Erhvervsskole\undervisning\øh database server igen\Orm_Bager\Orm_Bager\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
+C:\Users\annx3683\OneDrive - Syddansk Erhvervsskole\undervisning\øh database server igen\Orm_Bager\Orm_Bager\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\annx3683\OneDrive - Syddansk Erhvervsskole\undervisning\øh database server igen\Orm_Bager\Orm_Bager\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\annx3683\OneDrive - Syddansk Erhvervsskole\undervisning\øh database server igen\Orm_Bager\Orm_Bager\obj\Debug\netcoreapp3.1\Orm_Bager.csproj.CopyComplete
+C:\Users\annx3683\OneDrive - Syddansk Erhvervsskole\undervisning\øh database server igen\Orm_Bager\Orm_Bager\obj\Debug\netcoreapp3.1\Orm_Bager.dll
+C:\Users\annx3683\OneDrive - Syddansk Erhvervsskole\undervisning\øh database server igen\Orm_Bager\Orm_Bager\obj\Debug\netcoreapp3.1\Orm_Bager.pdb
+C:\Users\annx3683\OneDrive - Syddansk Erhvervsskole\undervisning\database server igen\Orm_Bager\Orm_Bager\obj\Debug\netcoreapp3.1\Orm_Bager.csprojAssemblyReference.cache
+C:\Users\annx3683\OneDrive - Syddansk Erhvervsskole\undervisning\database server igen\Orm_Bager\Orm_Bager\obj\Debug\netcoreapp3.1\Orm_Bager.AssemblyInfoInputs.cache
+C:\Users\annx3683\OneDrive - Syddansk Erhvervsskole\undervisning\database server igen\Orm_Bager\Orm_Bager\obj\Debug\netcoreapp3.1\Orm_Bager.AssemblyInfo.cs
+C:\Users\annx3683\OneDrive - Syddansk Erhvervsskole\undervisning\database server igen\Orm_Bager\Orm_Bager\obj\Debug\netcoreapp3.1\Orm_Bager.dll
+C:\Users\annx3683\OneDrive - Syddansk Erhvervsskole\undervisning\database server igen\Orm_Bager\Orm_Bager\obj\Debug\netcoreapp3.1\Orm_Bager.pdb
+C:\Users\annx3683\OneDrive - Syddansk Erhvervsskole\undervisning\database server igen\Orm_Bager\Orm_Bager\bin\Debug\netcoreapp3.1\Orm_Bager.exe
+C:\Users\annx3683\OneDrive - Syddansk Erhvervsskole\undervisning\database server igen\Orm_Bager\Orm_Bager\bin\Debug\netcoreapp3.1\Orm_Bager.deps.json
+C:\Users\annx3683\OneDrive - Syddansk Erhvervsskole\undervisning\database server igen\Orm_Bager\Orm_Bager\bin\Debug\netcoreapp3.1\Orm_Bager.runtimeconfig.json
+C:\Users\annx3683\OneDrive - Syddansk Erhvervsskole\undervisning\database server igen\Orm_Bager\Orm_Bager\bin\Debug\netcoreapp3.1\Orm_Bager.runtimeconfig.dev.json
+C:\Users\annx3683\OneDrive - Syddansk Erhvervsskole\undervisning\database server igen\Orm_Bager\Orm_Bager\bin\Debug\netcoreapp3.1\Orm_Bager.dll
+C:\Users\annx3683\OneDrive - Syddansk Erhvervsskole\undervisning\database server igen\Orm_Bager\Orm_Bager\bin\Debug\netcoreapp3.1\Orm_Bager.pdb
+C:\Users\annx3683\OneDrive - Syddansk Erhvervsskole\undervisning\database server igen\Orm_Bager\Orm_Bager\bin\Debug\netcoreapp3.1\System.Data.SqlClient.dll
+C:\Users\annx3683\OneDrive - Syddansk Erhvervsskole\undervisning\database server igen\Orm_Bager\Orm_Bager\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
+C:\Users\annx3683\OneDrive - Syddansk Erhvervsskole\undervisning\database server igen\Orm_Bager\Orm_Bager\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\sni.dll
+C:\Users\annx3683\OneDrive - Syddansk Erhvervsskole\undervisning\database server igen\Orm_Bager\Orm_Bager\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
+C:\Users\annx3683\OneDrive - Syddansk Erhvervsskole\undervisning\database server igen\Orm_Bager\Orm_Bager\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\annx3683\OneDrive - Syddansk Erhvervsskole\undervisning\database server igen\Orm_Bager\Orm_Bager\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\annx3683\OneDrive - Syddansk Erhvervsskole\undervisning\database server igen\Orm_Bager\Orm_Bager\obj\Debug\netcoreapp3.1\Orm_Bager.csproj.CopyComplete
