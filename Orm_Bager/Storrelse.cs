@@ -8,19 +8,26 @@ namespace Orm_Bager
 {
     class Storrelse
     {
-        private string size;
-        private string gsize;
-        private string query;
-        public string tablename = "Storrelse";
         private SqlConnection myConn;
-        public List<string> Keys = new List<string>();
-        public ArrayList Values = new ArrayList();
+        private string size;    // værdi til storrelse koloenne
+        private string gsize;   // værdi til gentagelse storrelse til update
+        //private string query;   
+        public string tablename = "Storrelse";  // for at få tablenavn fra databasse som en værdi
+        public List<string> Keys = new List<string>();  // list til kolonnenavne
+        public ArrayList Values = new ArrayList();      // list til Values af værdierne vi skriver end
 
+        /// <summary>
+        /// for at få forbindelse til databsen fra program
+        /// </summary>
+        /// <param name="c"></param>
         public Storrelse(SqlConnection c)
         {
             myConn = c;
         }
 
+        /// <summary>
+        /// sætter værdier og trækker værdierne ud for storrelse
+        /// </summary>
         public string storrelse 
         {
             get
@@ -33,6 +40,9 @@ namespace Orm_Bager
             }
         }
 
+        /// <summary>
+        /// sætter værdier og trækker værdierne ud for GentagStorrelse
+        /// </summary>
         public string GentagStorrelse
         {
             get
@@ -46,23 +56,25 @@ namespace Orm_Bager
         }
 
         /// <summary>
-        /// træet med grenene ud til hvor man har bestem man skal i CRUD
+        /// for at fidne ud af hvor man skal sendes hen i CRUD
         /// </summary>
         /// <param name="crud"></param>
         /// <param name="valg"></param>
         public void Save(int crud, int valg)
         {
-            CRUD Crud = new CRUD(myConn);
+            CRUD Crud = new CRUD(myConn);   // forbindelse til CRUD
 
+            // tilføj kolonne til Keys
             Keys.Add("Storrelse");
             //Keys.Add("Id");
 
+            // tilføj værdier til Values
             Values.Add(storrelse);
 
-            ArrayList gValues = new ArrayList();
+            ArrayList gValues = new ArrayList();    // arraylist til alle de gentagene storrelser til update
             gValues.Add(GentagStorrelse);
 
-            switch (crud)
+            switch (crud)   // for at find eud af hvor sakl sende til i CRUD
             {
                 case 1:
                     Crud.Create(Keys, Values, tablename);
@@ -97,10 +109,10 @@ namespace Orm_Bager
 
         }*/
 
-        public void Update()
+        /*public void Update()
         {
 
-        }
+        }*/
 
         /// <summary>
         /// viser det der er i størrelse(Storrelse)

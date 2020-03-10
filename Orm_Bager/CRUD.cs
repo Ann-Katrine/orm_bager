@@ -13,6 +13,10 @@ namespace Orm_Bager
         private string query;
         private string keys;
 
+        /// <summary>
+        /// for at få database forbindelse fra program
+        /// </summary>
+        /// <param name="c"></param>
         public CRUD(SqlConnection c)
         {
             myConn = c;
@@ -24,22 +28,22 @@ namespace Orm_Bager
 /// <param name="Keys"></param>
 /// <param name="Values"></param>
 /// <param name="Tablename"></param> 
-        public void Create(List<string> Keys, ArrayList Values, string Tablename)
+        public void Create(List<string> Keys, ArrayList Values, string Tablename)   // Keys = tablens kolonner, Values = værdier vi skrevet ind, Tablename = tabel navn på tablen vi bruger
         {
-            keys = String.Join(", ", Keys);
-            values = "@" + string.Join(", @", Keys);
+            keys = String.Join(", ", Keys);     // for lavet alle Keys værdier, til at stå efter hinanden ved hjælp af string.Join
+            values = "@" + string.Join(", @", Keys);    // for alle Keys værdier, til at stå efter hinanden men samtidig få et @ foran
 
-            query = "INSERT INTO " + Tablename + "(" + keys + ") VALUES (" + values + ")";
-            Console.WriteLine(query);
-            myConn.Open();
+            query = "INSERT INTO " + Tablename + "(" + keys + ") VALUES (" + values + ")";     // Bruger Tablename, key, og values for at gøre at der ikke nemmer kommer SQL-injection 
+            //Console.WriteLine(query);
+            myConn.Open();  // åbener forbindelsen til databasen
             SqlCommand cmd = new SqlCommand(query, myConn);
             for (int i = 0; i < Keys.Count; i++)
             {
-                cmd.Parameters.AddWithValue("@" + Keys[i], Values[i]);
-                Console.WriteLine(Values[i]);
+                cmd.Parameters.AddWithValue("@" + Keys[i], Values[i]);  // Values erstatter @Keys variabler med den værdier   
+                //Console.WriteLine(Values[i]);
             }
-            cmd.ExecuteNonQuery();
-            myConn.Close();
+            cmd.ExecuteNonQuery();  // den køre cmd'en ???
+            myConn.Close(); // lukker forbindelsen til databasen
         }
 
         /// <summary>
@@ -47,58 +51,58 @@ namespace Orm_Bager
         /// </summary>
         /// <param name="Keys"></param>
         /// <param name="Tablename"></param>
-        public void Show(List<string> Keys, string Tablename, string join)
+        public void Show(List<string> Keys, string Tablename, string join) // Keys = tablens kolonner, Tablename = tabel navn på tablen vi bruger, join = hvis man skal bruge join's i en SQL sætning
         {
-            string total = "";
+            string total = "";  // skal bruges til en lang sætning
 
-            keys = String.Join(", ", Keys);
-            for (int i = 0; i < Keys.Count; i++)
+            keys = String.Join(", ", Keys);     // for lavet alle Keys værdier, til at stå efter hinanden ved hjælp af string.Join
+            for (int i = 0; i < Keys.Count; i++)    // for at få alle de værdier vi har i Keys
             {
-                values = Tablename + "." + Keys[i] + ",";
-                total = total + values;
+                values = Tablename + "." + Keys[i] + ",";   // for at sætte tablenavn.kolonnenavn 
+                total = total + values;     // for at sætte alle tablenavn.kolonnenavn efter hinanden
             }
             //Console.WriteLine(total);
 
-            if (Tablename == "Postnummer" || Tablename == "Storrelse")
-
+            if (Tablename == "Postnummer" || Tablename == "Storrelse")  // hvis tabelnavn er Postnummer eller Storrelse så gå ind
             {
                 query = "SELECT " + keys + " FROM " + Tablename;
             }
-            else
+            else    // hvis tabelnavn er noget anden
             {
                 //query = "SELECT kunde.Fornavn, Kunde.Fornavn, Kunde.Mobil, Kunde.VejNavn, Postnummer.Postnr, Postnummer.ByNavn FROM Kunde INNER JOIN Postnummer ON Kunde.Postnummer_id = Postnummer.Postnr";
                 query = "SELECT " + total + join;
                 //Console.WriteLine(query);
             }
 
-            myConn.Open();
+            myConn.Open();  // for at åbne forbindelse til database
             SqlCommand cmd = new SqlCommand(query, myConn);
 
             SqlDataReader reader = cmd.ExecuteReader();
 
             while (reader.Read())
             {
-                ArrayList arrayList = new ArrayList();
-                for (int i = 0; i < reader.FieldCount; i++)
+                ArrayList arrayList = new ArrayList();  // laver en liste til alle værdierne
+                for (int i = 0; i < reader.FieldCount; i++)     // for at finde ud af hvilken datatype værdierne har fra SQL
                 {
                     string dataType = reader.GetDataTypeName(i);
-                    if (dataType == "int")
+                    if (dataType == "int")          // hvis værdierne er en int
                     {
                         arrayList.Add(reader.GetInt32(i));
                         //Console.WriteLine(dataType);
                     }
-                    else if (dataType == "nvarchar" || dataType == "varchar")
+                    else if (dataType == "nvarchar" || dataType == "varchar")   // hvis værdierne er en nvarchar eller varchar
                     {
                         arrayList.Add(reader.GetString(i));
                         //Console.WriteLine(dataType);
                     }
-                    else if (dataType == "date" || dataType == "datetime")
+                    else if (dataType == "date" || dataType == "datetime")  // hvis værdierne er en date eller datetime
                     {
                         arrayList.Add(reader.GetDateTime(i));
                         //Console.WriteLine(dataType);
                     }
                 }
-                switch (Tablename)
+
+                switch (Tablename)  // finder den case tabelnavnet før til
                 {
                     case "Postnummer":
                         Console.WriteLine(string.Format("{0} {1}", arrayList[0], arrayList[1]));
@@ -127,7 +131,7 @@ namespace Orm_Bager
         /// <summary>
         /// sletter en række i den table man har valg der er i databasen
         /// </summary>
-        /// <param name="Keys"></param>
+        /// <param name="Keys"></param> 
         /// <param name="Values"></param>
         /// <param name="Tablename"></param>
         public void Delect(List<string> Keys, ArrayList Values, string Tablename, int antalvalues) // ikke færdig i nu

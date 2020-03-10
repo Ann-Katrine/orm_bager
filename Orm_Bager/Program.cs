@@ -8,20 +8,22 @@ namespace Orm_Bager
 
         static void Main(string[] args)
         {
-            int valg = 0;
-            string svar;
+            int valg = 0;  // vælge vej man skal gå
+            string svar;   // til delete, om man vil delete
+            int intværdi = 0; 
 
-            SqlConnection myConn = new SqlConnection("Server=localhost;database=Bager;uid=anne3013;pwd=1234");
-            PostnummerOgBy p = new PostnummerOgBy(myConn);
+            // laver forbindelse til databasen med det login man har lavet
+            SqlConnection myConn = new SqlConnection("Server=localhost;database=Bager;uid=anne3013;pwd=1234");  
+            PostnummerOgBy p = new PostnummerOgBy(myConn);  // laver forbindels til postnummerogby
 
             Console.WriteLine("Vælg hvilken du vil lave noget med");
             Console.WriteLine("#1 - postnummer og by");
             Console.WriteLine("#2 - Størrelse");
             Console.WriteLine("#3 - Kunde");
             Console.WriteLine("#4 - Kage");
-            fejlFindVedValg();
+            fejlFindVedValg();  // for at vælge
 
-            // for at finde ud af hvor vi skal hen
+            // for at finde ud af hvor man skal hen efter ens valg
             switch (valg)
             {
                 case 1:
@@ -38,13 +40,17 @@ namespace Orm_Bager
                     break;
             }
 
+            /// <summary>
+            /// hvad man kan gør med postnummerogby
+            /// </summary>
+            /// <param name="c"></param>
             void PostnummerOgBy()
             {
                 //CRUD crud = new CRUD();
-                int postnumer = 0;
-                int gpostnr;
-                string bynavn;
-                string gbynavn;
+                int postnumer = 0;  // værdi for postnummer
+                int gpostnr;        // værdi for gentagelse af postnummer til update
+                string bynavn;      // værdi for bynavn
+                string gbynavn;     // værdi for gentagelse af postnummer til update
 
 
                 Console.WriteLine("Vælg hvad du vil i Postnummer og by");
@@ -52,35 +58,50 @@ namespace Orm_Bager
                 Console.WriteLine("#2 - Updater postnummer og by");
                 Console.WriteLine("#3 - Hvis postnummer og by");
                 Console.WriteLine("#4 - Slet postnummer og by");
-                fejlFindVedValg();
+                fejlFindVedValg();  // for at man kan vælge
 
-                switch (valg)
+                switch (valg)   // for at vises hen til hvad man har valgt
                 {
-                    case 1:
+                    case 1: // create
                         Console.WriteLine("skriv et postnummer");
-                        postnumer = Convert.ToInt32(Console.ReadLine());
+                        do
+                        {
+                            try
+                            {
+                                postnumer = Convert.ToInt32(Console.ReadLine());
+                            }
+                            catch (Exception)
+                            {
+                                postnumer = 0;
+                                Console.WriteLine("du har ikke skrevet et tal");
+                            }
+                        } while (postnumer == 0);   //for at fejl finde og få en værdi til postnummer
                         Console.WriteLine("skriv et bynavn til");
-                        bynavn = Console.ReadLine();
+                        bynavn = Console.ReadLine();    // for at få bynavn værdi
 
-                        p.Postnummer = postnumer;
-                        p.Bynavn = bynavn;
+                        p.Postnummer = postnumer;   // sender værdien fra postummer variablen på denne side over til metoden postnummer 
+                        p.Bynavn = bynavn;          // sender værdien fra Bynavn variablen på denne side over til metoden Bynavn
                         //crud.Create();
-                        p.Save(valg, 0);
+                        p.Save(valg, 0);    // sendes videre i procesen til at oprette et postnummer
                         break;
-                    case 2:
+
+                    case 2: // update
                         Console.WriteLine("Hvor meget vil du ændre");
                         Console.WriteLine("#1 - Postnummer");
                         Console.WriteLine("#2 - By");
                         Console.WriteLine("#3 - Postnummer og by");
-                        fejlFindVedValg();
+                        fejlFindVedValg();  // for at man kan vælge
 
-                        switch (valg)
+                        switch (valg)   // for at vises hen til hvad man har valgt
                         {
-                            case 1:
+                            case 1:     // kun postnummer
                                 Console.WriteLine("Hvilket postnummer vil du ændre?");
                                 //p.Show();
                                 p.Save(3, 0);
                                 gpostnr = Convert.ToInt32(Console.ReadLine());
+                                /*værdier();
+                                gpostnr = intværdi;
+                                Console.WriteLine(gpostnr);*/
                                 Console.WriteLine("Hvad skal det ændres til?");
                                 postnumer = Convert.ToInt32(Console.ReadLine());
 
@@ -89,7 +110,7 @@ namespace Orm_Bager
                                 //p.Update(valg);
                                 p.Save(2, valg);
                                 break;
-                            case 2:
+                            case 2:     // kun bynavn
                                 Console.WriteLine("Hvilken by vil du ændre?");
                                 //p.Show();
                                 p.Save(3, 0);
@@ -102,7 +123,7 @@ namespace Orm_Bager
                                 //p.Update(valg);
                                 p.Save(2, valg);
                                 break;
-                            case 3:
+                            case 3:     // begge
                                 Console.WriteLine("Hvilket postnummer vil du ændre?");
                                 //p.Show();
                                 p.Save(3, 0);
@@ -120,11 +141,13 @@ namespace Orm_Bager
                                 break;
                         }
                         break;
-                    case 3:
+
+                    case 3: // read
                         //p.Show();
                         p.Save(valg,0);
                         break;
-                    case 4:
+
+                    case 4: // delete
                         Console.WriteLine("Hvilket postnummer");
                         //p.Show();
                         p.Save(3,0);
@@ -166,7 +189,7 @@ namespace Orm_Bager
                         break;
                     case 2:
 
-                        s.Update();
+                        //s.Update();
                         break;
                     case 3:
                         //s.Show();
@@ -311,6 +334,11 @@ namespace Orm_Bager
                     }
                 } while (valg >= 5 || valg <= 0); // fejl finding med og rigtig tal
             } // for at fejl finde og ikke gentage samme proces flere gange
+
+            void værdier()
+            {
+                intværdi = Convert.ToInt32(Console.ReadLine());
+            }
         }
     }
 }

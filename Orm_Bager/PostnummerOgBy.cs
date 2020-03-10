@@ -8,26 +8,29 @@ namespace Orm_Bager
 {
     class PostnummerOgBy
     {
-        //private string query;
-
-        //private string keys;
-        //private string values;
         private SqlConnection myConn;
-        public List<string> Keys = new List<string>();
-        public ArrayList Values = new ArrayList();
-        private int postnummer;
-        private int gpostnr;
-        private string bynavn;
-        private string gbynavn;
-        public string Tablename = "Postnummer";
+        public List<string> Keys = new List<string>();   // list til alle kolonnenavne
+        public ArrayList Values = new ArrayList();       // arraylist til alle værdierne man skrever ind
+        private int postnummer;     // værdi til postnummer kolonne
+        private int gpostnr;        // værdi til en gentagene postnummer til update
+        private string bynavn;      // værdi til bynavn kolonne
+        private string gbynavn;     // værdi til en gentagene bynavn til update
+        public string Tablename = "Postnummer";     // for at få tablenavn fra databasse som en værdi
+        //private string query;   
 
 
-
+        /// <summary>
+        /// for at få forbindelse til databsen fra program
+        /// </summary>
+        /// <param name="c"></param>
         public PostnummerOgBy(SqlConnection c)
         {
             myConn = c;
         }
 
+        /// <summary>
+        /// sætter værdier og trækker værdierne ud for Postnummer
+        /// </summary>
         public int Postnummer
         {
             get
@@ -40,6 +43,9 @@ namespace Orm_Bager
             }
         }
 
+        /// <summary>
+        /// sætter værdier og trækker værdierne ud for GentagPostnr
+        /// </summary>
         public int GentagPostnr
         {
             get
@@ -52,6 +58,9 @@ namespace Orm_Bager
             }
         }
 
+        /// <summary>
+        /// sætter værdier og trækker værdierne ud for Bynavn
+        /// </summary>
         public string Bynavn
         {
             get
@@ -64,6 +73,9 @@ namespace Orm_Bager
             }
         }
 
+        /// <summary>
+        /// sætter værdier og trækker værdierne ud for GentagBynavn
+        /// </summary>
         public string GentagBynavn
         {
             get
@@ -76,21 +88,28 @@ namespace Orm_Bager
             }
         }
 
+        /// <summary>
+        /// for at finde du af hvor man skal sendes hen i CRUD
+        /// </summary>
+        /// <param name="crud"></param> for at hjælpe med at finde ud af hvilken switch man skal hen til
+        /// <param name="valg"></param> også for at hjælpe med at finde ud af hvilken switch man skal hen til
         public void Save(int crud, int valg)
         {
-            CRUD Crud = new CRUD(myConn);
+            CRUD Crud = new CRUD(myConn);   // forbindelse til CRUD
             
+            // tilføj kolonner til Keys
             Keys.Add("Postnr");
             Keys.Add("ByNavn");
 
+            // tilføj værdier til Values
             Values.Add(Postnummer);
             Values.Add(Bynavn);
 
-            ArrayList gValues = new ArrayList();
+            ArrayList gValues = new ArrayList();    // laver en list til de gentage postnr og bynavn til update
             gValues.Add(GentagPostnr);
             gValues.Add(GentagBynavn);
 
-            switch (crud)
+            switch (crud)   // hvilken vej man skal sendes til CRUD
             {
                 case 1:
                     Crud.Create(Keys, Values, Tablename);
