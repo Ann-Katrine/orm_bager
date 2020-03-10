@@ -5,9 +5,10 @@ namespace Orm_Bager
 {
     class Program
     {
+
         static void Main(string[] args)
         {
-            int valg;
+            int valg = 0;
             string svar;
 
             SqlConnection myConn = new SqlConnection("Server=localhost;database=Bager;uid=anne3013;pwd=1234");
@@ -18,8 +19,9 @@ namespace Orm_Bager
             Console.WriteLine("#2 - Størrelse");
             Console.WriteLine("#3 - Kunde");
             Console.WriteLine("#4 - Kage");
-            valg = Convert.ToInt32(Console.ReadLine());
+            fejlFindVedValg();
 
+            // for at finde ud af hvor vi skal hen
             switch (valg)
             {
                 case 1:
@@ -34,15 +36,12 @@ namespace Orm_Bager
                 case 4:
                     Kager();
                     break;
-                default:
-                    Console.WriteLine("Du har skrevet en værdi der ikke findes");
-                    break;
             }
 
             void PostnummerOgBy()
             {
                 //CRUD crud = new CRUD();
-                int postnumer;
+                int postnumer = 0;
                 int gpostnr;
                 string bynavn;
                 string gbynavn;
@@ -53,7 +52,7 @@ namespace Orm_Bager
                 Console.WriteLine("#2 - Updater postnummer og by");
                 Console.WriteLine("#3 - Hvis postnummer og by");
                 Console.WriteLine("#4 - Slet postnummer og by");
-                valg = Convert.ToInt32(Console.ReadLine());
+                fejlFindVedValg();
 
                 switch (valg)
                 {
@@ -73,7 +72,7 @@ namespace Orm_Bager
                         Console.WriteLine("#1 - Postnummer");
                         Console.WriteLine("#2 - By");
                         Console.WriteLine("#3 - Postnummer og by");
-                        valg = Convert.ToInt32(Console.ReadLine());
+                        fejlFindVedValg();
 
                         switch (valg)
                         {
@@ -119,8 +118,6 @@ namespace Orm_Bager
                                 //p.Update(valg);
                                 p.Save(2, valg);
                                 break;
-                            default:
-                                break;
                         }
                         break;
                     case 3:
@@ -142,13 +139,7 @@ namespace Orm_Bager
                             p.Save(valg,0);
                         }
                         break;
-                    default:
-                        Console.WriteLine("Du har skrevet en værdi der ikke findes");
-                        break;
                 }
-
-                
-                
             }
 
             void StorrelseTilKager()
@@ -161,7 +152,7 @@ namespace Orm_Bager
                 Console.WriteLine("#2 - Updater størrelse");
                 Console.WriteLine("#3 - Hvis størrelse");
                 Console.WriteLine("#4 - Slet størrelse");
-                valg = Convert.ToInt32(Console.ReadLine());
+                fejlFindVedValg();
 
                 switch (valg)
                 {
@@ -197,8 +188,6 @@ namespace Orm_Bager
                         }
                         //s.Delect();
                         break;
-                    default:
-                        break;
                 }
             }
 
@@ -217,7 +206,7 @@ namespace Orm_Bager
                 Console.WriteLine("#2 - Updater kunde");
                 Console.WriteLine("#3 - Hvis kunde");
                 Console.WriteLine("#4 - Slet kunde");
-                valg = Convert.ToInt32(Console.ReadLine());
+                fejlFindVedValg();
 
                 switch (valg)
                 {
@@ -232,10 +221,10 @@ namespace Orm_Bager
                         vejnummer = Console.ReadLine();
                         Console.WriteLine("Hvad er mobilnummeret?");
                         mobil = Convert.ToInt32(Console.ReadLine());
-                        Console.WriteLine("Hvad er det for en by?");
+                        Console.WriteLine("Hvad er det for et postnummer?");
                         p.Save(3,0);
                         postnummer = Convert.ToInt32(Console.ReadLine());
-
+                        
                         k.Fornavn = fornavn;
                         k.Efternavn = efternavn;
                         k.Vejnavn = vejnavn + " " + vejnummer;
@@ -264,9 +253,6 @@ namespace Orm_Bager
                             //k.Save(valg, 0);
                         }
                         break;
-                    default:
-                        Console.WriteLine("Du har skrevet en værdi der ikke findes");
-                        break;
                 }
             } // ikke færdig
 
@@ -283,7 +269,7 @@ namespace Orm_Bager
                 Console.WriteLine("#2 - Updater kage");
                 Console.WriteLine("#3 - Hvis kage");
                 Console.WriteLine("#4 - Slet kage");
-                valg = Convert.ToInt32(Console.ReadLine());
+                fejlFindVedValg();
 
                 switch (valg)
                 {
@@ -311,11 +297,20 @@ namespace Orm_Bager
                         k.Save(3, 0);
                         
                         break;
-                    default:
-                        break;
                 }
             } // ikke færdig
 
+            void fejlFindVedValg()
+            {
+                do
+                {
+                    valg = Convert.ToInt32(Console.ReadLine()); // skriver værdi
+                    if (valg >= 5 || valg <= 0) // tjekker om rigtig værdi
+                    {
+                        Console.WriteLine("Du har ikke skrevet et tal imellem 1-4, så prøv igen.");
+                    }
+                } while (valg >= 5 || valg <= 0); // fejl finding med og rigtig tal
+            } // for at fejl finde og ikke gentage samme proces flere gange
         }
     }
 }

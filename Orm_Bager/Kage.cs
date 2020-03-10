@@ -89,8 +89,8 @@ namespace Orm_Bager
                     break;
                 case 3:
                     s.Save(5,0);
-                    join = s.tablename + "." + s.Keys[0] + " FROM " + tablename + " INNER JOIN " + s.tablename + " ON " + tablename + "." + Keys[2] + " = " + s.tablename + "." + s.Keys[0];
-                    Console.WriteLine(join);
+                    join = s.tablename + "." + s.Keys[0] + " FROM " + tablename + " RIGHT JOIN " + s.tablename + " ON " + tablename + "." + Keys[2] + " = " + s.tablename + "." + s.Keys[1];
+                    //Console.WriteLine(join);
                     Crud.Show(Keys, tablename, join);
                     break;
                 case 4:

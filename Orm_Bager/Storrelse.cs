@@ -55,7 +55,7 @@ namespace Orm_Bager
             CRUD Crud = new CRUD(myConn);
 
             Keys.Add("Storrelse");
-            Keys.Add("Id");
+            //Keys.Add("Id");
 
             Values.Add(storrelse);
 
@@ -70,7 +70,6 @@ namespace Orm_Bager
                 case 2:
                     break;
                 case 3:
-                    
                     Crud.Show(Keys, tablename, "");
                     break;
                 case 4:

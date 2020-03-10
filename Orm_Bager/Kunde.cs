@@ -15,7 +15,6 @@ namespace Orm_Bager
         private string vejnavn;
         private string join;
         private string query;
-        //private string getid;
         private int mobil;
         private int postnummer;
 
@@ -81,11 +80,6 @@ namespace Orm_Bager
             set
             {
                 postnummer = value;
-                query = "SELECT Postnr FROM Postnummer WHERE Postnummer.ByNavn = '" + postnummer + "'";
-                myConn.Open();
-                SqlCommand cmd = new SqlCommand(query, myConn);
-                postnummer = Convert.ToInt32(cmd.ExecuteScalar());
-                myConn.Close();
             }
         }
 

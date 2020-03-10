@@ -89,7 +89,6 @@ namespace Orm_Bager
             ArrayList gValues = new ArrayList();
             gValues.Add(GentagPostnr);
             gValues.Add(GentagBynavn);
-                
 
             switch (crud)
             {
@@ -112,8 +111,6 @@ namespace Orm_Bager
 
                     break;
             }
-
-            
         }
 
         /// <summary>

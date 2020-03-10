@@ -30,12 +30,13 @@ namespace Orm_Bager
             values = "@" + string.Join(", @", Keys);
 
             query = "INSERT INTO " + Tablename + "(" + keys + ") VALUES (" + values + ")";
-
+            Console.WriteLine(query);
             myConn.Open();
             SqlCommand cmd = new SqlCommand(query, myConn);
             for (int i = 0; i < Keys.Count; i++)
             {
                 cmd.Parameters.AddWithValue("@" + Keys[i], Values[i]);
+                Console.WriteLine(Values[i]);
             }
             cmd.ExecuteNonQuery();
             myConn.Close();
@@ -67,7 +68,7 @@ namespace Orm_Bager
             {
                 //query = "SELECT kunde.Fornavn, Kunde.Fornavn, Kunde.Mobil, Kunde.VejNavn, Postnummer.Postnr, Postnummer.ByNavn FROM Kunde INNER JOIN Postnummer ON Kunde.Postnummer_id = Postnummer.Postnr";
                 query = "SELECT " + total + join;
-                Console.WriteLine(query);
+                //Console.WriteLine(query);
             }
 
             myConn.Open();
@@ -84,14 +85,17 @@ namespace Orm_Bager
                     if (dataType == "int")
                     {
                         arrayList.Add(reader.GetInt32(i));
+                        //Console.WriteLine(dataType);
                     }
                     else if (dataType == "nvarchar" || dataType == "varchar")
                     {
                         arrayList.Add(reader.GetString(i));
+                        //Console.WriteLine(dataType);
                     }
                     else if (dataType == "date" || dataType == "datetime")
                     {
                         arrayList.Add(reader.GetDateTime(i));
+                        //Console.WriteLine(dataType);
                     }
                 }
                 switch (Tablename)
@@ -106,7 +110,7 @@ namespace Orm_Bager
                         Console.WriteLine(string.Format("{0} {1}: mobilnr. {2}, bor på {3} ved {4} {5}", arrayList[0], arrayList[1], arrayList[2], arrayList[3], arrayList[4], arrayList[5]));
                         break;
                     case "Kage":
-                        Console.WriteLine(string.Format("Kagen: {0}, koster {1} kr., størrelsen er {2}", arrayList[0], arrayList[1], arrayList[2]));
+                        Console.WriteLine(string.Format("Kagen: {0}, koster {1} kr., størrelsen er {2}", arrayList[0], arrayList[1], arrayList[3]));
                         break;
                 }
             }
@@ -128,19 +132,32 @@ namespace Orm_Bager
         /// <param name="Tablename"></param>
         public void Delect(List<string> Keys, ArrayList Values, string Tablename, int antalvalues) // ikke færdig i nu
         {
+            string total = "";
+
             if ( antalvalues > 1)
             {
-                query = "DELETE Id FROM " + Tablename + " WHERE " + Tablename + "." + Keys + " = @Values";
+                for (int i = 0; i < Keys.Count; i++)
+                {
+                    total = total + Tablename + "." + Keys[i] + " = " + Values[i];
+                    if (i == 0)
+                    {
+                        total = total + " & ";
+                    }
+                }
+
+                query = "DELETE Id FROM " + Tablename + " WHERE " + total;
+                Console.WriteLine(query);
+                //query = "DELETE Id FROM " + Tablename + " WHERE " + Tablename + "." + Keys + " = @Values";
             }
             else
             {
-                query = "DELETE Id FROM " + Tablename + " WHERE " + Tablename + "." + Keys + " = @Values";
+                query = "DELETE FROM " + Tablename + " WHERE " + Tablename + "." + Keys + " = @Values"; 
             }
            
             Console.WriteLine(query);
             myConn.Open();
             SqlCommand cmd = new SqlCommand(query, myConn);
-            cmd.Parameters.AddWithValue("@" + Values, Values);
+            cmd.Parameters.AddWithValue("@Values", Values);
             cmd.ExecuteNonQuery();
             myConn.Close();
         } // ikke færdig i nu
