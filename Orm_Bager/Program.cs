@@ -64,18 +64,8 @@ namespace Orm_Bager
                 {
                     case 1: // create
                         Console.WriteLine("skriv et postnummer");
-                        do
-                        {
-                            try
-                            {
-                                postnumer = Convert.ToInt32(Console.ReadLine());
-                            }
-                            catch (Exception)
-                            {
-                                postnumer = 0;
-                                Console.WriteLine("du har ikke skrevet et tal");
-                            }
-                        } while (postnumer == 0);   //for at fejl finde og få en værdi til postnummer
+                        intvardier();
+                        postnumer = intværdi;
                         Console.WriteLine("skriv et bynavn til");
                         bynavn = Console.ReadLine();    // for at få bynavn værdi
 
@@ -98,10 +88,10 @@ namespace Orm_Bager
                                 Console.WriteLine("Hvilket postnummer vil du ændre?");
                                 //p.Show();
                                 p.Save(3, 0);
-                                gpostnr = Convert.ToInt32(Console.ReadLine());
-                                /*værdier();
+                                intvardier();
                                 gpostnr = intværdi;
-                                Console.WriteLine(gpostnr);*/
+                                //Console.WriteLine(gpostnr);
+
                                 Console.WriteLine("Hvad skal det ændres til?");
                                 postnumer = Convert.ToInt32(Console.ReadLine());
 
@@ -127,9 +117,11 @@ namespace Orm_Bager
                                 Console.WriteLine("Hvilket postnummer vil du ændre?");
                                 //p.Show();
                                 p.Save(3, 0);
-                                gpostnr = Convert.ToInt32(Console.ReadLine());
+                                intvardier();
+                                gpostnr = intværdi;
                                 Console.WriteLine("Hvad skal det ændres til?");
-                                postnumer = Convert.ToInt32(Console.ReadLine());
+                                intvardier();
+                                postnumer = intværdi;
                                 Console.WriteLine("Hvad skal byen hedder?");
                                 bynavn = Console.ReadLine();
 
@@ -151,7 +143,8 @@ namespace Orm_Bager
                         Console.WriteLine("Hvilket postnummer");
                         //p.Show();
                         p.Save(3,0);
-                        postnumer = Convert.ToInt32(Console.ReadLine());
+                        intvardier();
+                        postnumer = intværdi;
                         p.Postnummer = postnumer;
 
                         Console.WriteLine("Vil du slettet den");
@@ -243,10 +236,13 @@ namespace Orm_Bager
                         Console.WriteLine("Hvad er vejnummeret?");
                         vejnummer = Console.ReadLine();
                         Console.WriteLine("Hvad er mobilnummeret?");
-                        mobil = Convert.ToInt32(Console.ReadLine());
+                        intvardier();
+                        mobil = intværdi;
                         Console.WriteLine("Hvad er det for et postnummer?");
                         p.Save(3,0);
                         postnummer = Convert.ToInt32(Console.ReadLine());
+                        intvardier();
+                        postnummer = intværdi;
                         
                         k.Fornavn = fornavn;
                         k.Efternavn = efternavn;
@@ -265,7 +261,8 @@ namespace Orm_Bager
                         k.Save(3, 0);
                         fornavn = Console.ReadLine();
                         Console.WriteLine("Skal skrive mobil nummer også");
-                        mobil = Convert.ToInt32(Console.ReadLine());
+                        intvardier();
+                        mobil = intværdi;
 
                         k.Mobil = mobil;
                         Console.WriteLine("Vil du slettet den");
@@ -303,7 +300,8 @@ namespace Orm_Bager
                         s.Save(3, 0);
                         storrelse = Console.ReadLine();
                         Console.WriteLine("Hvor meget koster kagen?");
-                        pris = Convert.ToInt32(Console.ReadLine());
+                        intvardier();
+                        pris = intværdi;
 
                         k.Navn = navn;
                         k.Pris = pris;
@@ -323,6 +321,9 @@ namespace Orm_Bager
                 }
             } // ikke færdig
 
+            /// <summary>
+            /// for at fejl finde og ikke gentage samme proces flere gange
+            /// </summary>
             void fejlFindVedValg()
             {
                 do
@@ -333,11 +334,28 @@ namespace Orm_Bager
                         Console.WriteLine("Du har ikke skrevet et tal imellem 1-4, så prøv igen.");
                     }
                 } while (valg >= 5 || valg <= 0); // fejl finding med og rigtig tal
-            } // for at fejl finde og ikke gentage samme proces flere gange
+            }
 
-            void værdier()
+            /// <summary>
+            /// for at fejl finde og ikke gentage samme proces flere gange 
+            /// </summary>
+            void intvardier()
             {
-                intværdi = Convert.ToInt32(Console.ReadLine());
+                bool rigtig;
+                do      // gør at den bliver ved med at køre end til den er ikke er false i whilen
+                {
+                    rigtig = true;
+                    try
+                    {
+                        intværdi = Convert.ToInt32(Console.ReadLine());     // skriver en værdi
+                    }
+                    catch (Exception)
+                    {
+                        rigtig = false;
+                        Console.WriteLine("du har ikke skrevet et tal");
+                    }
+                } while (rigtig == false);   //for at fejl finde og få en værdi til postnummer
+
             }
         }
     }
