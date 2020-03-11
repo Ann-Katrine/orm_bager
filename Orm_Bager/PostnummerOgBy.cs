@@ -96,7 +96,7 @@ namespace Orm_Bager
         public void Save(int crud, int valg)
         {
             CRUD Crud = new CRUD(myConn);   // forbindelse til CRUD
-            
+
             // tilføj kolonner til Keys
             Keys.Add("Postnr");
             Keys.Add("ByNavn");
@@ -117,6 +117,19 @@ namespace Orm_Bager
                     break;
                 case 2:
                     //Update(valg, Keys, Values ,gValues);
+                    
+                    switch (valg)
+                    {
+                        case 1:
+                            Crud.Update(Keys, Values, gValues, Tablename, 0, "");
+                            break;
+                        case 2:
+                            Crud.Update(Keys, Values, gValues, Tablename, 0, "");
+                            break;
+                        case 3:
+                            Crud.Update(Keys, Values, gValues, Tablename, 0, "alle");
+                            break;
+                    }
                     break;
                 case 3:
                     Crud.Show(Keys, Tablename, "");
@@ -127,9 +140,21 @@ namespace Orm_Bager
                     //Delect(Keys, Values);
                     break;
                 case 5:
-
                     break;
             }
+        }
+
+        public void Show()
+        {
+            CRUD Crud = new CRUD(myConn);   // forbindelse til CRUD
+
+            List<string> kolonne = new List<string>();   // list til alle kolonnenavne
+            
+            // tilføj kolonner til Keys
+            kolonne.Add("Postnr");
+            kolonne.Add("ByNavn");
+
+            Crud.Show(kolonne, Tablename, "");
         }
 
         /// <summary>

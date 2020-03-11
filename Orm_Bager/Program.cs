@@ -10,7 +10,7 @@ namespace Orm_Bager
         {
             int valg = 0;  // vælge vej man skal gå
             string svar;   // til delete, om man vil delete
-            int intværdi = 0; 
+            int intvardi = 0; 
 
             // laver forbindelse til databasen med det login man har lavet
             SqlConnection myConn = new SqlConnection("Server=localhost;database=Bager;uid=anne3013;pwd=1234");  
@@ -43,10 +43,8 @@ namespace Orm_Bager
             /// <summary>
             /// hvad man kan gør med postnummerogby
             /// </summary>
-            /// <param name="c"></param>
             void PostnummerOgBy()
             {
-                //CRUD crud = new CRUD();
                 int postnumer = 0;  // værdi for postnummer
                 int gpostnr;        // værdi for gentagelse af postnummer til update
                 string bynavn;      // værdi for bynavn
@@ -65,13 +63,12 @@ namespace Orm_Bager
                     case 1: // create
                         Console.WriteLine("skriv et postnummer");
                         intvardier();
-                        postnumer = intværdi;
+                        postnumer = intvardi;
                         Console.WriteLine("skriv et bynavn til");
                         bynavn = Console.ReadLine();    // for at få bynavn værdi
 
                         p.Postnummer = postnumer;   // sender værdien fra postummer variablen på denne side over til metoden postnummer 
                         p.Bynavn = bynavn;          // sender værdien fra Bynavn variablen på denne side over til metoden Bynavn
-                        //crud.Create();
                         p.Save(valg, 0);    // sendes videre i procesen til at oprette et postnummer
                         break;
 
@@ -86,65 +83,57 @@ namespace Orm_Bager
                         {
                             case 1:     // kun postnummer
                                 Console.WriteLine("Hvilket postnummer vil du ændre?");
-                                //p.Show();
-                                p.Save(3, 0);
+                                p.Show();
                                 intvardier();
-                                gpostnr = intværdi;
+                                gpostnr = intvardi;
                                 //Console.WriteLine(gpostnr);
-
                                 Console.WriteLine("Hvad skal det ændres til?");
                                 postnumer = Convert.ToInt32(Console.ReadLine());
 
                                 p.Postnummer = postnumer;
                                 p.GentagPostnr = gpostnr;
-                                //p.Update(valg);
                                 p.Save(2, valg);
                                 break;
                             case 2:     // kun bynavn
                                 Console.WriteLine("Hvilken by vil du ændre?");
-                                //p.Show();
-                                p.Save(3, 0);
+                                p.Show();
                                 gbynavn = Console.ReadLine();
                                 Console.WriteLine("Hvad skal byen hedder?");
                                 bynavn = Console.ReadLine();
 
                                 p.GentagBynavn = gbynavn;
                                 p.Bynavn = bynavn;
-                                //p.Update(valg);
                                 p.Save(2, valg);
                                 break;
                             case 3:     // begge
                                 Console.WriteLine("Hvilket postnummer vil du ændre?");
-                                //p.Show();
-                                p.Save(3, 0);
+                                p.Show();
                                 intvardier();
-                                gpostnr = intværdi;
+                                gpostnr = intvardi;
                                 Console.WriteLine("Hvad skal det ændres til?");
                                 intvardier();
-                                postnumer = intværdi;
+                                postnumer = intvardi;
                                 Console.WriteLine("Hvad skal byen hedder?");
                                 bynavn = Console.ReadLine();
+                                Console.WriteLine(bynavn);
 
                                 p.Postnummer = postnumer;
                                 p.GentagPostnr = gpostnr;
                                 p.Bynavn = bynavn;
-                                //p.Update(valg);
                                 p.Save(2, valg);
                                 break;
                         }
                         break;
 
                     case 3: // read
-                        //p.Show();
                         p.Save(valg,0);
                         break;
 
                     case 4: // delete
                         Console.WriteLine("Hvilket postnummer");
-                        //p.Show();
                         p.Save(3,0);
                         intvardier();
-                        postnumer = intværdi;
+                        postnumer = intvardi;
                         p.Postnummer = postnumer;
 
                         Console.WriteLine("Vil du slettet den");
@@ -158,19 +147,22 @@ namespace Orm_Bager
                 }
             }
 
+            /// <summary>
+            /// hvad man kan gør med StorrelseTilKager
+            /// </summary>
             void StorrelseTilKager()
             {
-                Storrelse s = new Storrelse(myConn);
-                string storrelse;
+                Storrelse s = new Storrelse(myConn);    // få forbindelse til Storrelse class
+                string storrelse;   // værdi for storrelse
 
                 Console.WriteLine("Vælg hvad du vil i størrelse");
                 Console.WriteLine("#1 - Lav ny størrelse");
                 Console.WriteLine("#2 - Updater størrelse");
                 Console.WriteLine("#3 - Hvis størrelse");
                 Console.WriteLine("#4 - Slet størrelse");
-                fejlFindVedValg();
+                fejlFindVedValg();  // for at man kan vælge
 
-                switch (valg)
+                switch (valg) // for at vises hen til hvad man har valgt
                 {
                     case 1:
                         Console.WriteLine("Skriv en ny størrese");
@@ -178,19 +170,15 @@ namespace Orm_Bager
 
                         s.storrelse = storrelse;
                         s.Save(valg, 0);
-                        //s.Insert();
                         break;
                     case 2:
 
-                        //s.Update();
                         break;
                     case 3:
-                        //s.Show();
                         s.Save(valg, 0);
                         break;
                     case 4:
                         Console.WriteLine("Hvilken størrelse");
-                        //p.Show();
                         s.Save(3, 0);
                         storrelse = Console.ReadLine();
                         s.storrelse = storrelse;
@@ -202,29 +190,31 @@ namespace Orm_Bager
                             Console.WriteLine("Okay, den bliver slettet");
                             s.Save(valg, 0);
                         }
-                        //s.Delect();
                         break;
                 }
             }
 
+            /// <summary>
+            /// hvad man kan gør med kunder
+            /// </summary>
             void Kunder()
             {
                 Kunde k = new Kunde(myConn);
-                string fornavn;
-                string efternavn;
-                string vejnavn;
-                string vejnummer;
-                int mobil;
-                int postnummer;
+                string fornavn;     // værdi for fornavn
+                string efternavn;   // værdi for efternavn
+                string vejnavn;     // værdi for vejnavn
+                string vejnummer;   // værdi for vejnavn
+                int mobil;          // værdi for mobil
+                int postnummer;     // værdi for postnummer
 
                 Console.WriteLine("Vælg hvad du vil i kunde");
                 Console.WriteLine("#1 - Lav ny kunde");
                 Console.WriteLine("#2 - Updater kunde");
                 Console.WriteLine("#3 - Hvis kunde");
                 Console.WriteLine("#4 - Slet kunde");
-                fejlFindVedValg();
+                fejlFindVedValg(); // for at man kan vælge
 
-                switch (valg)
+                switch (valg) // for at vises hen til hvad man har valgt
                 {
                     case 1:
                         Console.WriteLine("Hvad er fornavnet?");
@@ -237,12 +227,12 @@ namespace Orm_Bager
                         vejnummer = Console.ReadLine();
                         Console.WriteLine("Hvad er mobilnummeret?");
                         intvardier();
-                        mobil = intværdi;
+                        mobil = intvardi;
                         Console.WriteLine("Hvad er det for et postnummer?");
                         p.Save(3,0);
                         postnummer = Convert.ToInt32(Console.ReadLine());
                         intvardier();
-                        postnummer = intværdi;
+                        postnummer = intvardi;
                         
                         k.Fornavn = fornavn;
                         k.Efternavn = efternavn;
@@ -262,7 +252,7 @@ namespace Orm_Bager
                         fornavn = Console.ReadLine();
                         Console.WriteLine("Skal skrive mobil nummer også");
                         intvardier();
-                        mobil = intværdi;
+                        mobil = intvardi;
 
                         k.Mobil = mobil;
                         Console.WriteLine("Vil du slettet den");
@@ -276,6 +266,9 @@ namespace Orm_Bager
                 }
             } // ikke færdig
 
+            /// <summary>
+            /// hvad man kan gør med Kager
+            /// </summary>
             void Kager()
             {
                 Storrelse s = new Storrelse(myConn);
@@ -289,9 +282,9 @@ namespace Orm_Bager
                 Console.WriteLine("#2 - Updater kage");
                 Console.WriteLine("#3 - Hvis kage");
                 Console.WriteLine("#4 - Slet kage");
-                fejlFindVedValg();
+                fejlFindVedValg(); // for at man kan vælge
 
-                switch (valg)
+                switch (valg) // for at vises hen til hvad man har valgt
                 {
                     case 1:
                         Console.WriteLine("Hvad hedder kagen?");
@@ -301,7 +294,7 @@ namespace Orm_Bager
                         storrelse = Console.ReadLine();
                         Console.WriteLine("Hvor meget koster kagen?");
                         intvardier();
-                        pris = intværdi;
+                        pris = intvardi;
 
                         k.Navn = navn;
                         k.Pris = pris;
@@ -347,7 +340,7 @@ namespace Orm_Bager
                     rigtig = true;
                     try
                     {
-                        intværdi = Convert.ToInt32(Console.ReadLine());     // skriver en værdi
+                        intvardi = Convert.ToInt32(Console.ReadLine());     // skriver en værdi
                     }
                     catch (Exception)
                     {

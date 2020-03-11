@@ -125,12 +125,15 @@ namespace Orm_Bager
             Values.Add(Vejnavn);
             Values.Add(Postnummer);
 
+            ArrayList gValues = new ArrayList();
+
             switch (crud)   // hvor man bliver videre sendt til i CRUD
             {
                 case 1:
                     Crud.Create(Keys, Values, Tablename);
                     break;
                 case 2:
+                    //Crud.Update(Keys, Values, )
                     break;
                 case 3:
                     p.Save(5,0);    // for lige at tilføje postnummerOgBy's tablenavn og kolonnenavne

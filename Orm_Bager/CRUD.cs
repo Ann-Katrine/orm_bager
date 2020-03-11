@@ -12,6 +12,7 @@ namespace Orm_Bager
         private string values;
         private string query;
         private string keys;
+        private string total = "";  // skal bruges til en lang sætning
 
         /// <summary>
         /// for at få database forbindelse fra program
@@ -53,8 +54,6 @@ namespace Orm_Bager
         /// <param name="Tablename"></param>
         public void Show(List<string> Keys, string Tablename, string join) // Keys = tablens kolonner, Tablename = tabel navn på tablen vi bruger, join = hvis man skal bruge join's i en SQL sætning
         {
-            string total = "";  // skal bruges til en lang sætning
-
             keys = String.Join(", ", Keys);     // for lavet alle Keys værdier, til at stå efter hinanden ved hjælp af string.Join
             for (int i = 0; i < Keys.Count; i++)    // for at få alle de værdier vi har i Keys
             {
@@ -123,9 +122,52 @@ namespace Orm_Bager
             
         }
 
-        public void Update() /* ikke begundt på i nu*/
+        public void Update(List<string> Keys, ArrayList Values, ArrayList gValues, string tabelnavn, int tal, string antal) /* ikke begundt på i nu*/
         {
+            int count;
+            string total1 = "";
+            string query1;
 
+            if (antal == "alle")
+            {
+                count = Keys.Count;
+                for (int i = 0; i < count; i++)
+                {
+                    //total = total + tabelnavn + "." +  Keys[i] + " = " + gValues[i];
+                    total1 = total1 + Keys[i] + " = '" + Values[i] + "'";
+                    
+                    if(i < Keys.Count-1)
+                    {
+                        //total = total + ",";
+                        total1 = total1 + ",";
+                    }
+                }
+                //Console.WriteLine(total);
+                //Console.WriteLine(total1);
+
+                switch (tabelnavn)
+                {
+                    case "Postnummer":
+                        query = "UPDATE " + tabelnavn + " SET " + total1 + " WHERE " + tabelnavn + "." + Keys[0] + " = " + gValues[0];
+                        break;
+                    case "Storrelse":
+                        break;
+                    case "Kunde":
+                        break;
+                    case "Kage":
+                        break;
+                }
+                Console.WriteLine(query);
+
+                myConn.Open();
+                SqlCommand cmd = new SqlCommand(query, myConn);
+                cmd.ExecuteNonQuery();  // den køre cmd'en ???
+                myConn.Close();
+            }
+            else
+            {
+
+            }
         }
 
         /// <summary>
@@ -164,6 +206,6 @@ namespace Orm_Bager
             cmd.Parameters.AddWithValue("@Values", Values);
             cmd.ExecuteNonQuery();
             myConn.Close();
-        } // ikke færdig i nu
+        } 
     }
 }
